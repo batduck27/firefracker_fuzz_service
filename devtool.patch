@@ -1,0 +1,23 @@
+diff --git a/tools/devtool b/tools/devtool
+index 7b952dda..1a088349 100755
+--- a/tools/devtool
++++ b/tools/devtool
+@@ -585,6 +585,18 @@ cmd_help() {
+     echo ""
+ }
+ 
++cmd_devctr_exec() {
++    docker_cmd=("$@")
++
++    run_devctr \
++        --privileged \
++        --ulimit nofile=4096:4096 \
++        --security-opt seccomp=unconfined \
++        --workdir "$CTR_FC_ROOT_DIR" \
++        -- \
++        bash -c "${docker_cmd[@]} "
++}
++
+ # `$0 build` - build Firecracker or fuzz targets
+ # Please see `$0 help` for more information.
+ #

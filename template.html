@@ -1,0 +1,95 @@
+<html>
+<head>
+    <style>
+        td, th {
+          text-align: left;
+          padding: 0px 25px;
+        }
+        td:nth-child(even) {
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h4>Hello!</h4>
+
+    <p>This is an automatically generated fuzzing report.</p>
+
+    <table>
+        <tr>
+            <td>Fuzz target</td>
+            <td>{{ report['fuzz_target'] }}</td>
+        </tr>
+        <tr>
+            <td>Profile</td>
+            <td>{{ report['profile'] }}</td>
+        </tr>
+        <tr>
+            <td>Target</td>
+            <td>{{ report['target'] }}</td>
+        </tr>
+        <tr>
+            <td>Fuzzer instances</td>
+            <td>{{ report['cores'] }}</td>
+        </tr>
+        <tr>
+            <td>Start time</td>
+            <td>{{ report['start_time'] }}</td>
+        </tr>
+        <tr>
+            <td>Total execs (master)</td>
+            <td>{{ report['execs_done'] }}</td>
+        </tr>
+        <tr>
+            <td>Cycles done (master)</td>
+            <td>{{ report['cycles_done'] }}</td>
+        </tr>
+        <tr>
+            <td>Fuzzer stability (master)</td>
+            <td>{{ report['stability'] }}</td>
+        </tr>
+        <tr>
+            <td>Coverage (reported by kcov)</td>
+            <td>{{ report['coverage'] }}</td>
+        </tr>
+        <tr style="color:{% if report['unique_hangs'] != 0 %} red {% else %} green {% endif %};">
+            <td>Unique hangs</td>
+            <td>{{ report['unique_hangs'] }}</td>
+        </tr>
+        <tr style="color:{% if report['unique_crashes'] != 0 %} red {% else %} green {% endif %};">
+            <td>Unique crashes</td>
+            <td>{{ report['unique_crashes'] }}</td>
+        </tr>
+    </table>
+
+    <p>Other info </p>
+    <table>
+        <tr>
+            <td>Firecracker version </td>
+            <td>{{ report['firecracker_version'] }}</td>
+        </tr>
+        <tr>
+            <td>Firecrackers commit hash</td>
+            <td>{{ report['firecracker_hash'] }}</td>
+        </tr>
+        <tr>
+            <td>rustc version</td>
+            <td>{{ report['rustc_version'] }}</td>
+        </tr>
+        <tr>
+            <td>cargo-afl version</td>
+            <td>{{ report['afl_version'] }}</td>
+        </tr>
+        <tr>
+            <td>Host info (uname -smrpio)</td>
+            <td>{{ report['host_info'] }}</td>
+        </tr>
+    </table>
+
+    <p>You will find attached to this email {% if report['unique_crashes'] != 0 %}a zip archive with the crashes and {% endif %}the coverage report generated using kcov.</p>
+
+    <p>For further details, log in to the fuzzing machine and go to {{ report['path'] }}. The fuzz directory should contain the fuzzer output and kcov report.</p>
+
+    <p>If you wish to unsubscribe, please log in to the fuzzing machine and delete your email from .mailinglist file.</p>
+</body>
+</html>

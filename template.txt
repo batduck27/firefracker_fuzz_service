@@ -1,0 +1,28 @@
+Hello!
+
+This is an automatically generated fuzzing report.
+
+Fuzz target                 : {{ report['fuzz_target'] }}
+Profile                     : {{ report['profile'] }}
+Target                      : {{ report['target'] }}
+Fuzzer instances            : {{ report['cores'] }}
+Start time                  : {{ report['start_time'] }}
+Total execs (master)        : {{ report['execs_done'] }}
+Cycles done (master)        : {{ report['cycles_done'] }}
+Fuzzer stability (master)   : {{ report['stability'] }}
+Coverage (reported by kcov) : {{ report['coverage'] }}
+Unique hangs                : {{ report['unique_hangs'] }}
+Unique crashes              : {{ report['unique_crashes'] }}
+
+Other info
+Firecracker version         : {{ report['firecracker_version'] }}
+Firecrackers commit hash    : {{ report['firecracker_hash'] }}
+rustc version               : {{ report['rustc_version'] }}
+cargo-afl version           : {{ report['afl_version'] }}
+Host info (uname -smrpio)   : {{ report['host_info'] }}
+
+You will find attached to this email {% if report['unique_crashes'] != 0 %}a zip archive with the crashes and {% endif %}the coverage report generated using kcov.
+
+For further details, log in to the fuzzing machine and go to {{ report['path'] }}. The fuzz directory should contain the fuzzer output and kcov report.
+
+If you wish to unsubscribe, please log in to the fuzzing machine and delete your email from .mailinglist file.
